@@ -13,17 +13,23 @@ public class Program extends Application {
         launch();
     }
 
+    private static Scene mainStage;
+
     @Override
-    public void start(Stage stage) throws IOException {
+    public synchronized void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
         ScrollPane scrollPane = fxmlLoader.load();
 
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
-        Scene scene = new Scene(scrollPane);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
+        mainStage = new Scene(scrollPane);
+        stage.setScene(mainStage);
+        stage.setTitle("My application");
         stage.show();
+    }
+
+    public static Scene getMainStage() {
+        return mainStage;
     }
 }
