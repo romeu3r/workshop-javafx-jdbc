@@ -5,6 +5,7 @@ module workshopjavafxjdbc {
 
     opens application to javafx.fxml;
     opens gui;
+    opens model.entities;
     exports application;
     exports gui;
 }
