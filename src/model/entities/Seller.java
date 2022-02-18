@@ -5,11 +5,11 @@ import java.util.Date;
 
 public class Seller implements Serializable {
 
-    private Integer id;
-    private String name;
-    private String email;
+    private Integer id = 0;
+    private String name = "";
+    private String email = "";
     private Date birthDate;
-    private Double baseSalary;
+    private Double baseSalary = 0.0;
 
     private Department department;
 

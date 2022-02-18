@@ -29,7 +29,7 @@ public class Program extends Application {
 
         mainStage = new Scene(scrollPane);
         stage.setScene(mainStage);
-        stage.setTitle("My application");
+        stage.setTitle("CRUD Manager base data");
         stage.show();
     }
 }
