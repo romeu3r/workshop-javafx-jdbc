@@ -9,4 +9,6 @@ module workshopjavafxjdbc {
     opens model.entities;
     exports application;
     exports gui;
+    exports gui.util;
+    opens gui.util;
 }
