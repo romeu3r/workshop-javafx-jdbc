@@ -13,12 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Department;
+import model.exceptions.ValidationException;
 import model.services.DepartmentService;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DepartmentFormController implements Initializable {
 
@@ -59,6 +58,8 @@ public class DepartmentFormController implements Initializable {
             departmentService.saveOrUpdate(entity);
             notifyDataChangeListeners();
             Utils.currentStageStage(event).close();
+        } catch (ValidationException e) {
+            setErrorMessages(e.getErrors());
         } catch (DbException e) {
             Alerts.showAlert("Error saving Object", null, e.getMessage(), Alert.AlertType.ERROR);
         }
@@ -72,8 +73,11 @@ public class DepartmentFormController implements Initializable {
 
     private Department getFormData() {
         Department department = new Department();
+        ValidationException exception = new ValidationException("Validation error.");
         department.setId(Utils.tryParseToInteger(txtId.getText()));
+        if (txtName == null || txtName.getText().trim().equals("")) exception.addError("name", "Field can`n be empty.");
         department.setName(txtName.getText());
+        if (exception.getErrors().size() > 0) throw exception;
         return department;
     }
 
@@ -96,5 +100,10 @@ public class DepartmentFormController implements Initializable {
         if (entity == null) throw new IllegalStateException("Entity was null.");
         txtId.setText(String.valueOf(entity.getId()));
         txtName.setText(String.valueOf(entity.getName()));
+    }
+
+    private void setErrorMessages(Map<String, String> errors) {
+        Set<String> fields = errors.keySet();
+        if (fields.contains("name")) labelErrorName.setText(errors.get("name"));
     }
 }
