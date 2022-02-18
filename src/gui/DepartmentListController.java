@@ -29,14 +29,12 @@ public class DepartmentListController implements Initializable {
     private TableColumn<Department, String> tableColumnName;
     @FXML
     private Button btNew;
+    private ObservableList<Department> observableList;
 
     @FXML
     public void btNewAction() {
         System.out.println("OK");
     }
-
-    private ObservableList<Department> observableList;
-
 
     public void setDepartmentService(DepartmentService service) {
         this.departmentService = service;

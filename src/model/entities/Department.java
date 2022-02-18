@@ -1,11 +1,8 @@
 package model.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class Department implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     private Integer id;
     private String name;
@@ -43,21 +40,21 @@ public class Department implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Department that = (Department) o;
-
-        if (!Objects.equals(id, that.id)) return false;
-        return Objects.equals(name, that.name);
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Department other = (Department) obj;
+        if (id == null) {
+            return other.id == null;
+        } else return id.equals(other.id);
     }
 
     @Override
     public String toString() {
-        return "Department{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Department [id=" + id + ", name=" + name + "]";
     }
 }

@@ -9,11 +9,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Program extends Application {
+    private static Scene mainStage;
+
     public static void main(String[] args) {
         launch();
     }
 
-    private static Scene mainStage;
+    public static Scene getMainStage() {
+        return mainStage;
+    }
 
     @Override
     public synchronized void start(Stage stage) throws IOException {
@@ -27,9 +31,5 @@ public class Program extends Application {
         stage.setScene(mainStage);
         stage.setTitle("My application");
         stage.show();
-    }
-
-    public static Scene getMainStage() {
-        return mainStage;
     }
 }
