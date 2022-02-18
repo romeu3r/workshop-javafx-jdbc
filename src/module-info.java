@@ -11,4 +11,6 @@ module workshopjavafxjdbc {
     exports gui;
     exports gui.util;
     opens gui.util;
+    exports gui.listeners;
+    opens gui.listeners;
 }
