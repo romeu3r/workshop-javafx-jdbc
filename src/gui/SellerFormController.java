@@ -125,7 +125,7 @@ public class SellerFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        initializeNodes();
     }
 
     private void initializeNodes() {
@@ -134,7 +134,6 @@ public class SellerFormController implements Initializable {
         Constraints.setTextFieldDouble(txtBaseSalary);
         Constraints.setTextFieldMaxLength(txtEmail, 40);
         Utils.formatDatePicker(dpBirthDate, "dd/MM/yyyy");
-
         initializeComboBoxDepartment();
     }
 
